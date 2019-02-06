@@ -1068,7 +1068,7 @@ public class WhenGSpec extends BaseGSpec {
         sendRequestNoDataTable("GET", "/mesos/state-summary", null, null, null, null, null, "json");
 
         String json = "[" + commonspec.getResponse().getResponse() + "]";
-        String parsedElement = "$..services[?(@.active==false)].name";
+        String parsedElement = "$..frameworks[?(@.active==false)].name";
         String value = commonspec.getJSONPathString(json, parsedElement, null);
 
         Assertions.assertThat(value).as("Inactive services").doesNotContain(service);
