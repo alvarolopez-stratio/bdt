@@ -676,7 +676,7 @@ public class DcosSpec extends BaseGSpec {
 
     public void selectElements(String role, String service, String element, String elementValue, String envValue) throws Exception {
         CommandExecutionSpec commandexecutionspec = new CommandExecutionSpec(commonspec);
-        Assertions.assertThat(service).overridingErrorMessage("Error while parsing arguments. The service must be one of them: [community, pbd, zookeeper, ignite, kubernetes, etcd, arangodb, hdfs]").isIn("community", "zookeeper", "pbd", "ignite", "kubernetes", "etcd", "arangodb, hdfs");
+        Assertions.assertThat(service).overridingErrorMessage("Error while parsing arguments. The service must be one of them: [community, pbd, zookeeper, ignite, kubernetes, etcd, arangodb, hdfs]").isIn("community", "zookeeper", "pbd", "ignite", "kubernetes", "etcd", "arangodb", "hdfs");
         int pos = selectExhibitorRole(role, service);
         Assertions.assertThat(pos).overridingErrorMessage("Error while parsing arguments. The role " + role + " of the service " + service + " doesn't exist").isNotEqualTo(-1);
         commandexecutionspec.executeLocalCommand("echo '" + ThreadProperty.get("exhibitor_answer") + "' | jq '.phases[" + pos + "].\"000" + (pos + 1) + "\".steps[][] | select(.status | contains(\"RUNNING\")) | select(." + element + " | contains(\"" + elementValue + "\")).name' | sed 's/\"//g'", "0", envValue);
@@ -685,7 +685,7 @@ public class DcosSpec extends BaseGSpec {
 
     public void selectElements(String role, String service, String element) throws Exception {
         CommandExecutionSpec commandexecutionspec = new CommandExecutionSpec(commonspec);
-        Assertions.assertThat(service).overridingErrorMessage("Error while parsing arguments. The service must be one of them: [community, pbd, zookeeper, ignite, kubernetes, etcd, arangodb, hdfs]").isIn("community", "zookeeper", "pbd", "ignite", "kubernetes", "etcd", "arangodb, hdfs");
+        Assertions.assertThat(service).overridingErrorMessage("Error while parsing arguments. The service must be one of them: [community, pbd, zookeeper, ignite, kubernetes, etcd, arangodb, hdfs]").isIn("community", "zookeeper", "pbd", "ignite", "kubernetes", "etcd", "arangodb", "hdfs");
         int pos = selectExhibitorRole(role, service);
         Assertions.assertThat(pos).overridingErrorMessage("Error while parsing arguments. The role " + role + " of the service " + service + " doesn't exist").isNotEqualTo(-1);
         commandexecutionspec.executeLocalCommand("echo '" + ThreadProperty.get("exhibitor_answer") + "' | jq '.phases[" + pos + "].\"000" + (pos + 1) + "\".steps[][] | select(.status | contains(\"RUNNING\"))." + element + "' | sed 's/\"//g'", "0", "elementsConstraint");
