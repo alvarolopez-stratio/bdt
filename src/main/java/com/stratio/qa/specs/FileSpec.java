@@ -233,7 +233,7 @@ public class FileSpec extends BaseGSpec {
     public void convertYamlToJson(String fileToConvert, String fileName) throws Exception {
 
         // Retrieve data
-        String retrievedData = commonspec.asJson(fileToConvert);
+        String retrievedData = commonspec.convertYamlToJson(fileToConvert);
 
         // Create file (temporary) and set path to be accessible within test
         File tempDirectory = new File(String.valueOf(System.getProperty("user.dir") + "/target/test-classes/"));
